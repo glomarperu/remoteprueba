@@ -1,4 +1,4 @@
-package com.idat.MiPrimerMicroservicioProducto.modelo;
+package com.idat.MiPrimerMicroservicioProfesor.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +15,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "producto")
-public class Producto {
+@Table(name = "profesor")
+public class Profesor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idProducto;
-	private String nombre;
+	private Integer idProfesor;
+	private String nombreprofe;
+	private String apellidoprofe;
 	
 	
 }

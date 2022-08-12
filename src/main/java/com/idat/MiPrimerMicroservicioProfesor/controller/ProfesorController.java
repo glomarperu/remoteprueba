@@ -1,4 +1,4 @@
-package com.idat.MiPrimerMicroservicioProducto.controller;
+package com.idat.MiPrimerMicroservicioProfesor.controller;
 
 import java.util.List;
 
@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.idat.MiPrimerMicroservicioProducto.modelo.Producto;
-import com.idat.MiPrimerMicroservicioProducto.servicio.ProductoService;
+
+import com.idat.MiPrimerMicroservicioProfesor.modelo.Profesor;
+import com.idat.MiPrimerMicroservicioProfesor.servicio.ProfesorService;
 
 @Controller
-@RequestMapping("/api/v1/producto")
-public class ProductoController {
+@RequestMapping("/api/v1/profesor")
+public class ProfesorController {
 	
 	@Autowired
-	private ProductoService service;
+	private ProfesorService service;
 	
 	@GetMapping("/hola")
 	public @ResponseBody String holamundo() {
@@ -28,28 +29,28 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/listar")
-	public @ResponseBody List<Producto> listarProducto(){
-		return service.listarProducto();
+	public @ResponseBody List<Profesor> listarProducto(){
+		return service.listarProfesor();
 	}
 	
 	@GetMapping("/listar/{id}")
-	public @ResponseBody Producto obtenerProducto(@PathVariable Integer id){
-		return service.obtenerProducto(id);
+	public @ResponseBody Profesor obtenerProducto(@PathVariable Integer id){
+		return service.obtenerProfesor(id);
 	}
 	
 	@PostMapping("/guardar")
-	public @ResponseBody void guardarProducto(@RequestBody Producto producto) {
-		service.guardarProducto(producto);
+	public @ResponseBody void guardarProducto(@RequestBody Profesor profesor) {
+		service.guardarProfesor(profesor);
 	}
 	
 	@PutMapping("/actualizar")
-	public @ResponseBody void actualizarProducto(@RequestBody Producto producto) {
-		service.actualizarProducto(producto);
+	public @ResponseBody void actualizarProducto(@RequestBody Profesor profesor) {
+		service.actualizarProfesor(profesor);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
 	public @ResponseBody void eliminarProducto(@RequestBody Integer id) {
-		service.eliminarProducto(id);
+		service.eliminarProfesor(id);
 	}
 	
 	
