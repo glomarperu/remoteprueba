@@ -12,44 +12,45 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTORequest;
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTOResponse;
+import com.idat.MiPrimerMicroservicioProducto.modelo.Producto;
 import com.idat.MiPrimerMicroservicioProducto.servicio.ProductoService;
 
 @Controller
 @RequestMapping("/api/v1/producto")
 public class ProductoController {
+	
 	@Autowired
 	private ProductoService service;
 	
+	@GetMapping("/hola")
+	public @ResponseBody String holamundo() {
+		return "Hola mundo";
+	}
 	
 	@GetMapping("/listar")
-	public @ResponseBody List<ProductoDTOResponse> listarColegios(){
-		return service.listarColegio();
+	public @ResponseBody List<Producto> listarProducto(){
+		return service.listarProducto();
 	}
 	
 	@GetMapping("/listar/{id}")
-	public @ResponseBody ProductoDTOResponse obtenerColegio(@PathVariable Integer id) {
-		return service.obtenerColegio(id);
+	public @ResponseBody Producto obtenerProducto(@PathVariable Integer id){
+		return service.obtenerProducto(id);
 	}
 	
 	@PostMapping("/guardar")
-	public @ResponseBody void guardarColegio(@RequestBody ProductoDTORequest colegio) {
-		service.guardarColegio(colegio);
+	public @ResponseBody void guardarProducto(@RequestBody Producto producto) {
+		service.guardarProducto(producto);
 	}
 	
 	@PutMapping("/actualizar")
-	public @ResponseBody  void actualizarColegio(@RequestBody ProductoDTORequest colegio) {
-		
-		service.actualizarColegio(colegio);
+	public @ResponseBody void actualizarProducto(@RequestBody Producto producto) {
+		service.actualizarProducto(producto);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
-	public @ResponseBody void eliminarColegio(@RequestBody Integer id) {
-		
-		service.eliminarColegio(id);
-}
+	public @ResponseBody void eliminarProducto(@RequestBody Integer id) {
+		service.eliminarProducto(id);
+	}
 	
 	
 

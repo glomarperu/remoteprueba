@@ -2,14 +2,13 @@ package com.idat.MiPrimerMicroservicioProducto.servicio;
 
 import java.util.List;
 
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTORequest;
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTOResponse;
+import com.idat.MiPrimerMicroservicioProducto.modelo.Producto;
 
 public interface ProductoService {
 
-	public List<ProductoDTOResponse> listarColegio();
-	public ProductoDTOResponse obtenerColegio(Integer id);
-	public void guardarColegio(ProductoDTORequest colegio);
-	public void actualizarColegio(ProductoDTORequest colegio);
-	public void eliminarColegio(Integer id);
+	public List<Producto> listarProducto();
+	public Producto obtenerProducto(Integer id);
+	public void guardarProducto(Producto producto);
+	public void actualizarProducto(Producto producto);
+	public void eliminarProducto(Integer id);
 }

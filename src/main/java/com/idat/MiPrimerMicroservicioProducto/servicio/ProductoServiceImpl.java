@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTORequest;
-import com.idat.MiPrimerMicroservicioProducto.dto.ProductoDTOResponse;
 import com.idat.MiPrimerMicroservicioProducto.modelo.Producto;
 import com.idat.MiPrimerMicroservicioProducto.repositorio.ProductoRepository;
 
@@ -15,59 +12,39 @@ import com.idat.MiPrimerMicroservicioProducto.repositorio.ProductoRepository;
 public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
-	private ProductoRepository repositorio;
+	private ProductoRepository repository;
+
+	@Override
+	public List<Producto> listarProducto() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
+
+	@Override
+	public Producto obtenerProducto(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id).orElse(null);
+	}
+
+	@Override
+	public void guardarProducto(Producto producto) {
+		repository.save(producto);
+		
+	}
+
+	@Override
+	public void actualizarProducto(Producto producto) {
+		repository.saveAndFlush(producto);
+		
+	}
+
+	@Override
+	public void eliminarProducto(Integer id) {
+		repository.deleteById(id);
+		
+	}
 	
 	
-	
-	@Override
-	public List<ProductoDTOResponse> listarColegio() {
-		
-		List<ProductoDTOResponse> lista = new ArrayList<ProductoDTOResponse>();
-		ProductoDTOResponse obj = null;
-		
-		for(Producto producto : repositorio.findAll()){
-			obj = new ProductoDTOResponse();
-			obj.setIdColegioDTO(producto.getIdProducto());
-			obj.setNombreColegioDTO(producto.getNombre());
-			
-			
-			lista.add(obj);
-		}
-		
-		return lista;
-	}
 
-	@Override
-	public ProductoDTOResponse obtenerColegio(Integer id) {
-		Producto producto = repositorio.findById(id).orElse(null);
-		
-		ProductoDTOResponse obj = new ProductoDTOResponse();
-		obj.setIdColegioDTO(producto.getIdProducto());
-		obj.setNombreColegioDTO(producto.getNombre());
-		return obj;
-	}
-
-	@Override
-	public void guardarColegio(ProductoDTORequest colegio) {
-		Producto obj = new Producto();
-		obj.setIdProducto(colegio.getIdColegioDTO());
-		obj.setNombre(colegio.getNombreColegioDTO());
-		repositorio.save(obj);
-	}
-
-	@Override
-	public void actualizarColegio(ProductoDTORequest colegio) {
-		Producto obj = new Producto();
-		obj.setIdProducto(colegio.getIdColegioDTO());
-		obj.setNombre(colegio.getNombreColegioDTO());
-		repositorio.saveAndFlush(obj);
-
-	}
-
-	@Override
-	public void eliminarColegio(Integer id) {
-		repositorio.deleteById(id);;
-
-	}
 
 }
